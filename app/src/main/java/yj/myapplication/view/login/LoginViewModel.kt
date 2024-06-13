@@ -52,7 +52,6 @@ class LoginViewModel @Inject constructor(
                 if (it.isSuccessful) {
                     Log.d("LoginViewModel", "firebaseAuthWithGoogle: 성공")
                     val user = auth.currentUser
-//                    Toast.makeText(context, "로그인 성공", Toast.LENGTH_SHORT).show()
                     val intent = Intent(context, MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     context.startActivity(intent)
