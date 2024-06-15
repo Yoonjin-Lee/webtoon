@@ -1,6 +1,5 @@
 package yj.myapplication.view.login
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,9 +8,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.activity.viewModels
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -35,7 +32,6 @@ class LoginActivity : ComponentActivity() {
                     val task = GoogleSignIn.getSignedInAccountFromIntent(data)
                     try {
                         // Google Sign In was successful, authenticate with Firebase
-                        val account = task.getResult(ApiException::class.java)
                         viewModel.firebaseAuthWithGoogle(task.result.idToken!!, FirebaseAuth.getInstance())
                     } catch (e: ApiException) {
                         // Google Sign In failed, update UI appropriately
@@ -50,7 +46,6 @@ class LoginActivity : ComponentActivity() {
 
         setContent {
             LoginScreen(
-                this,
                 resultLauncher
             )
         }

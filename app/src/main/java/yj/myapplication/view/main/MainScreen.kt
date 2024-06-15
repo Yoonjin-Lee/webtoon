@@ -71,10 +71,13 @@ fun MainScreen(
                 NavigationDrawerItem(
                     label = { Text(text = "Gemini 추천 작품") },
                     selected = false,
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                        viewModel.moveToAsk()
+                    },
                     colors = NavigationDrawerItemDefaults.colors(
                         unselectedContainerColor = Color.White
-                    ))
+                    )
+                )
                 NavigationDrawerItem(
                     label = {
                         Text(
@@ -88,7 +91,8 @@ fun MainScreen(
                     onClick = { viewModel.logout() },
                     colors = NavigationDrawerItemDefaults.colors(
                         unselectedContainerColor = Color.White
-                    ))
+                    )
+                )
             }
         }) {
         Scaffold(

@@ -9,7 +9,6 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import yj.myapplication.data.Work
 import javax.inject.Inject
 
@@ -32,9 +31,9 @@ class AddViewModel @Inject constructor(
         val auth = Firebase.auth
         val docRef = db.collection("week").document(auth.uid.toString())
 
-        docRef.get().addOnSuccessListener {
-            if (it != null && it.exists()) { // 문서가 있는 경우
-                val data = it.data
+        docRef.get().addOnSuccessListener {doc ->
+            if (doc != null && doc.exists()) { // 문서가 있는 경우
+                val data = doc.data
                 if (data != null && data.containsKey(day)) { // 해당 요일에 대한 필드가 있는지
                     val field = data[day] as ArrayList<Work>
                     field.add(

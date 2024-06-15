@@ -31,6 +31,7 @@
         <activity android:name=".view.login.LoginActivity"/>
         <activity android:name=".view.add.AddActivity"/>
         <activity android:name=".view.viewer.ViewerActivity"/>
+        <activity android:name=".view.ask.AskActivity"/>
     </application>
 
 </manifest>
