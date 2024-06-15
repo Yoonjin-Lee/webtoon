@@ -1,17 +1,12 @@
 package yj.myapplication.view.login
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.provider.Settings.Global.getString
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModel
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
@@ -51,7 +46,6 @@ class LoginViewModel @Inject constructor(
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     Log.d("LoginViewModel", "firebaseAuthWithGoogle: 성공")
-                    val user = auth.currentUser
                     val intent = Intent(context, MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     context.startActivity(intent)

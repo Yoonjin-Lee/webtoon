@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,7 +12,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,19 +24,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import yj.myapplication.R
 import yj.myapplication.ui.theme.MyApplicationTheme
 
 @Composable
 fun LoginScreen(
-    @ApplicationContext context: Context,
     resultLauncher: ActivityResultLauncher<Intent>
 ) {
     val viewModel: LoginViewModel = hiltViewModel()
 
-    Scaffold(
-    ) {
+    Scaffold{
         Column(
             modifier = Modifier
                 .fillMaxSize()

@@ -15,6 +15,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import yj.myapplication.data.Work
 import yj.myapplication.view.add.AddActivity
+import yj.myapplication.view.ask.AskActivity
 import yj.myapplication.view.login.LoginActivity
 import yj.myapplication.view.viewer.ViewerActivity
 import javax.inject.Inject
@@ -27,6 +28,7 @@ class MainViewModel @Inject constructor(
     private val _dayList = MutableLiveData<ArrayList<ArrayList<HashMap<String, Any>>>>()
     val dayList: LiveData<ArrayList<ArrayList<HashMap<String, Any>>>> get() = _dayList
 
+    // 웹툰 추가 이동
     fun moveToAdd() {
         val intent = Intent(context, AddActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -46,6 +48,13 @@ class MainViewModel @Inject constructor(
 
         val intent = Intent(context, ViewerActivity::class.java)
         intent.putExtra("url", urlMap[work.platform])
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(context, intent, null)
+    }
+
+    // gemini 채팅
+    fun moveToAsk(){
+        val intent = Intent(context, AskActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(context, intent, null)
     }

@@ -163,9 +163,9 @@ fun AddScreen(
 
             OutlinedTextField(
                 value = title,
-                onValueChange = { title = it },
+                onValueChange = {s: String ->  title = s },
                 label = { Text("제목") },
-                maxLines = 1
+                singleLine = true
             )
 
 
@@ -190,10 +190,9 @@ fun AddScreen(
                             selected = selectedIndex.value == radioGroup[it],
                             onClick = {
                                 selectedIndex.value = radioGroup[it]
-                                if (selectedIndex.value == "기타") {
-                                    isVisible = true
-                                }else{
-                                    isVisible = false
+                                isVisible = when(selectedIndex.value){
+                                    "기타" -> true
+                                    else -> false
                                 }
                             }
                         )
@@ -207,7 +206,7 @@ fun AddScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ) {
-                radioDayGroup.forEachIndexed { index, s ->
+                radioDayGroup.forEachIndexed {_, s ->
                     OutlinedButton(
                         onClick = { selectedDay.value = s },
                         modifier = Modifier.width(50.dp),
@@ -235,23 +234,11 @@ fun AddScreen(
                 OutlinedTextField(
                     modifier = Modifier.padding(10.dp),
                     value = url,
-                    onValueChange = { url = it },
+                    onValueChange = {s: String ->  url = s},
                     label = { Text("플랫폼 URL") },
-                    maxLines = 1
+                    singleLine = true
                 )
             }
         }
-    }
-}
-
-
-@Preview(showSystemUi = true)
-@Composable
-fun MainScreenPreview(
-    context: Context = LocalContext.current,
-    viewModel: AddViewModel = hiltViewModel()
-) {
-    MyApplicationTheme {
-        AddScreen(context)
     }
 }

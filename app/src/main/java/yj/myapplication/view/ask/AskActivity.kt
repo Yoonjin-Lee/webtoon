@@ -1,21 +1,16 @@
-package yj.myapplication.view.add
+package yj.myapplication.view.ask
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import dagger.hilt.android.AndroidEntryPoint
-import yj.myapplication.ui.theme.MyApplicationTheme
 
 @AndroidEntryPoint
-class AddActivity : ComponentActivity() {
+class AskActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyApplicationTheme {
-                AddScreen(
-                    this
-                )
-            }
+            AskScreen(this)
         }
     }
 }
