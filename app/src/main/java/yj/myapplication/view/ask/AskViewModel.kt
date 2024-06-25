@@ -14,6 +14,7 @@ import javax.inject.Inject
 class AskViewModel @Inject constructor() : ViewModel() {
     private val _chatList = MutableLiveData<ArrayList<Message>>()
     val chatList: MutableLiveData<ArrayList<Message>> get() = _chatList
+    private val listOfMessage = ArrayList<Message>()
 
     fun finish(
         context: Context
@@ -24,7 +25,6 @@ class AskViewModel @Inject constructor() : ViewModel() {
     fun sendMessage(
         text: String
     ) {
-        val listOfMessage = ArrayList<Message>()
         listOfMessage.addAll(_chatList.value.orEmpty())
         listOfMessage.add(
             Message(
@@ -34,11 +34,21 @@ class AskViewModel @Inject constructor() : ViewModel() {
                 isMe = true
             )
         )
-        _chatList.value = listOfMessage
+        _chatList.value = ArrayList(listOfMessage.reversed().distinct())
         Log.d("chatList", _chatList.value.toString())
     }
 
-    fun getMessage(){
-
+    fun getMessage(text: String){
+        listOfMessage.addAll(_chatList.value.orEmpty())
+        listOfMessage.add(
+            Message(
+                message = text,
+                time = (if(LocalTime.now().hour < 10) "0${LocalTime.now().hour}" else LocalTime.now().hour.toString())
+                        + ":" + (if(LocalTime.now().minute < 10) "0${LocalTime.now().minute}" else LocalTime.now().minute.toString()),
+                isMe = false
+            )
+        )
+        _chatList.value = ArrayList(listOfMessage.reversed().distinct())
+        Log.d("chatList", _chatList.value.toString())
     }
 }
