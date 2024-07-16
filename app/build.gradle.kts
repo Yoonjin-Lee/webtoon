@@ -54,6 +54,9 @@ android {
 }
 
 dependencies {
+    //vertax-ai
+    implementation(libs.firebase.vertaxai)
+
     //livedata
     implementation(libs.runtime)
     implementation(libs.runtime.livedata)

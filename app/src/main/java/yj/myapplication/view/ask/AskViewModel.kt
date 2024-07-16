@@ -5,13 +5,21 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.google.firebase.Firebase
+import com.google.firebase.vertexai.vertexAI
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import yj.myapplication.data.Message
 import java.time.LocalTime
 import javax.inject.Inject
 
 @HiltViewModel
 class AskViewModel @Inject constructor() : ViewModel() {
+    //create gemini model
+    private val geminiModel = Firebase.vertexAI.generativeModel("gemini-1.5-flash")
+
     private val _chatList = MutableLiveData<ArrayList<Message>>()
     val chatList: MutableLiveData<ArrayList<Message>> get() = _chatList
     private val listOfMessage = ArrayList<Message>()
@@ -36,9 +44,11 @@ class AskViewModel @Inject constructor() : ViewModel() {
         )
         _chatList.value = ArrayList(listOfMessage.reversed().distinct())
         Log.d("chatList", _chatList.value.toString())
+
+        askGemini(text)
     }
 
-    fun getMessage(text: String){
+    private fun getMessage(text: String){
         listOfMessage.addAll(_chatList.value.orEmpty())
         listOfMessage.add(
             Message(
@@ -50,5 +60,19 @@ class AskViewModel @Inject constructor() : ViewModel() {
         )
         _chatList.value = ArrayList(listOfMessage.reversed().distinct())
         Log.d("chatList", _chatList.value.toString())
+    }
+
+    private fun askGemini(
+        text: String
+    ){
+        var response = ""
+        viewModelScope.launch(Dispatchers.IO){
+            response = geminiModel.generateContent(text).text.toString()
+        }
+        getMessage(response)
+    }
+
+    init {
+        askGemini("")
     }
 }

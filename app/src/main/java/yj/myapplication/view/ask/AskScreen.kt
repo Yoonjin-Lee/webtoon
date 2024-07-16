@@ -97,6 +97,7 @@ fun AskScreen(
                     value = chatInput.value,
                     onValueChange = { input: String -> chatInput.value = input },
                     trailingIcon = {
+                        // 전송 버튼
                         IconButton(onClick = {
                             if (chatInput.value.isNotBlank()) {
                                 // 메시지 전송
