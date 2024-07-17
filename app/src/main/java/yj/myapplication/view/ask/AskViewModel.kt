@@ -33,7 +33,6 @@ class AskViewModel @Inject constructor() : ViewModel() {
     fun sendMessage(
         text: String
     ) {
-        listOfMessage.addAll(_chatList.value.orEmpty())
         listOfMessage.add(
             Message(
                 message = text,
@@ -42,14 +41,13 @@ class AskViewModel @Inject constructor() : ViewModel() {
                 isMe = true
             )
         )
-        _chatList.value = ArrayList(listOfMessage.reversed().distinct())
+        _chatList.value = ArrayList(listOfMessage.reversed())
         Log.d("chatList", _chatList.value.toString())
 
         askGemini(text)
     }
 
     private fun getMessage(text: String){
-        listOfMessage.addAll(_chatList.value.orEmpty())
         listOfMessage.add(
             Message(
                 message = text,
@@ -58,21 +56,28 @@ class AskViewModel @Inject constructor() : ViewModel() {
                 isMe = false
             )
         )
-        _chatList.value = ArrayList(listOfMessage.reversed().distinct())
+        _chatList.value = ArrayList(listOfMessage.reversed())
         Log.d("chatList", _chatList.value.toString())
     }
 
     private fun askGemini(
         text: String
     ){
-        var response = ""
+        var response = String()
         viewModelScope.launch(Dispatchers.IO){
-            response = geminiModel.generateContent(text).text.toString()
+            geminiModel.generateContentStream(text).collect{
+                response += it
+            }
+            Log.d("response", response)
         }
-        getMessage(response)
+        if (response.isNotBlank()) {
+            getMessage(response)
+        }else{
+            getMessage("오류")
+        }
     }
 
     init {
-        askGemini("")
+//        askGemini("안녕")
     }
 }
