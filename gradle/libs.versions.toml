@@ -17,6 +17,7 @@ androidxNavigationCompose = "2.7.7"
 playServices = "20.5.0"
 composeRuntime = "1.6.7"
 vertaxAi = "16.0.0-beta03"
+coroutines = "1.5.2"
 
 
 [libraries]
@@ -49,6 +50,8 @@ runtime = {group = "androidx.compose.runtime", name = "runtime", version.ref = "
 runtime-livedata = {group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "composeRuntime"}
 runtime-rxjava2 = {group = "androidx.compose.runtime", name = "runtime-rxjava2", version.ref = "composeRuntime"}
 firebase-vertaxai = {group = "com.google.firebase", name = "firebase-vertexai", version.ref = "vertaxAi"}
+coroutines-core = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines"}
+coroutines-android = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

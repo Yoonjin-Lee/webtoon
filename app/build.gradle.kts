@@ -54,6 +54,11 @@ android {
 }
 
 dependencies {
+    //coroutines
+    implementation(libs.coroutines.core)
+    implementation(libs.coroutines.android)
+
+
     //vertax-ai
     implementation(libs.firebase.vertaxai)
 

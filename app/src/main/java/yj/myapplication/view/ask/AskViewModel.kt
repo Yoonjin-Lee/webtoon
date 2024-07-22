@@ -9,8 +9,13 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.Firebase
 import com.google.firebase.vertexai.vertexAI
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import yj.myapplication.data.Message
 import java.time.LocalTime
 import javax.inject.Inject
@@ -36,8 +41,8 @@ class AskViewModel @Inject constructor() : ViewModel() {
         listOfMessage.add(
             Message(
                 message = text,
-                time = (if(LocalTime.now().hour < 10) "0${LocalTime.now().hour}" else LocalTime.now().hour.toString())
-                    + ":" + (if(LocalTime.now().minute < 10) "0${LocalTime.now().minute}" else LocalTime.now().minute.toString()),
+                time = (if (LocalTime.now().hour < 10) "0${LocalTime.now().hour}" else LocalTime.now().hour.toString())
+                        + ":" + (if (LocalTime.now().minute < 10) "0${LocalTime.now().minute}" else LocalTime.now().minute.toString()),
                 isMe = true
             )
         )
@@ -47,12 +52,12 @@ class AskViewModel @Inject constructor() : ViewModel() {
         askGemini(text)
     }
 
-    private fun getMessage(text: String){
+    private fun getMessage(text: String) {
         listOfMessage.add(
             Message(
                 message = text,
-                time = (if(LocalTime.now().hour < 10) "0${LocalTime.now().hour}" else LocalTime.now().hour.toString())
-                        + ":" + (if(LocalTime.now().minute < 10) "0${LocalTime.now().minute}" else LocalTime.now().minute.toString()),
+                time = (if (LocalTime.now().hour < 10) "0${LocalTime.now().hour}" else LocalTime.now().hour.toString())
+                        + ":" + (if (LocalTime.now().minute < 10) "0${LocalTime.now().minute}" else LocalTime.now().minute.toString()),
                 isMe = false
             )
         )
@@ -62,22 +67,22 @@ class AskViewModel @Inject constructor() : ViewModel() {
 
     private fun askGemini(
         text: String
-    ){
-        var response = String()
-        viewModelScope.launch(Dispatchers.IO){
-            geminiModel.generateContentStream(text).collect{
-                response += it
+    ) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = getResponse(text)
+            withContext(Dispatchers.Main) {
+                getMessage(response)
             }
-            Log.d("response", response)
-        }
-        if (response.isNotBlank()) {
-            getMessage(response)
-        }else{
-            getMessage("오류")
         }
     }
 
+    private suspend fun getResponse(text: String): String {
+        val response = geminiModel.generateContent(text).text
+
+        return response.orEmpty()
+    }
+
     init {
-//        askGemini("안녕")
+        askGemini("안녕")
     }
 }
