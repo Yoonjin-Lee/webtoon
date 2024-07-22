@@ -5,23 +5,23 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.google.firebase.Firebase
 import com.google.firebase.vertexai.vertexAI
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import io.noties.markwon.Markwon
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import yj.myapplication.data.Message
 import java.time.LocalTime
 import javax.inject.Inject
 
 @HiltViewModel
-class AskViewModel @Inject constructor() : ViewModel() {
+class AskViewModel @Inject constructor(
+    @ApplicationContext private val context: Context
+) : ViewModel() {
     //create gemini model
     private val geminiModel = Firebase.vertexAI.generativeModel("gemini-1.5-flash")
 
@@ -79,7 +79,9 @@ class AskViewModel @Inject constructor() : ViewModel() {
     private suspend fun getResponse(text: String): String {
         val response = geminiModel.generateContent(text).text
 
-        return response.orEmpty()
+        val markwon = Markwon.create(context)
+
+        return markwon.toMarkdown(response.orEmpty()).toString()
     }
 
     init {

@@ -18,6 +18,7 @@ playServices = "20.5.0"
 composeRuntime = "1.6.7"
 vertaxAi = "16.0.0-beta03"
 coroutines = "1.5.2"
+markdown = "4.6.2"
 
 
 [libraries]
@@ -52,6 +53,7 @@ runtime-rxjava2 = {group = "androidx.compose.runtime", name = "runtime-rxjava2",
 firebase-vertaxai = {group = "com.google.firebase", name = "firebase-vertexai", version.ref = "vertaxAi"}
 coroutines-core = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines"}
 coroutines-android = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines"}
+markwon-core = {group = "io.noties.markwon", name = "core", version.ref = "markdown"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
