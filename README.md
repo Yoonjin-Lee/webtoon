@@ -8,6 +8,7 @@
 </h1>
 
 <h4 align="center">하나의 앱에서, 여러 플랫폼의 웹툰을 요일 별로 모아보세요!</h4>
+<h4 align="center">You can enjoy webtoons from various platforms in one app!</h4>
 
 <p align="center">
   <img src="https://img.shields.io/badge/android-34A853?style=flat-square&logo=android&logoColor=white"/>
