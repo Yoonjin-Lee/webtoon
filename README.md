@@ -39,14 +39,14 @@
 여러 플랫폼을 오가며 웹툰을 찾아보는 과정이 번거롭게 느껴진 적은 없으신가요?  
 이런 불편함을 해결하고자, 한곳에서 편리하게 웹툰을 즐길 수 있는 앱을 개발했습니다!  
 이 앱은 사용자가 좋아하는 장르의 웹툰을 손쉽게 찾을 수 있도록, Gemini API 기반의 Vertax AI를 활용하여 장르 추천 AI 기능도 제공합니다.  
+  
+As a webtoon lover, you probably have favorite webtoons that you follow every day.  
+Have you ever felt frustrated searching through multiple platforms?  
+This app is here to solve that problem!  
+It allows you to enjoy all your favorite webtoons in one place.  
+Additionally, it features a webtoon recommendation system powered by the Gemini API!   
 
-As who loves webtoons, you must have favorite webtoons that you have to watch everyday.  
-Haven't you felt uncomfortable searching a number of platforms?  
-This application can solve it!!  
-It helps you enjoying webtoons in one app.  
-Also, we have an AI recommandation function based on Gemini!  
-
-* LivePreview - Make changes, See changes
+* 
   - Instantly see what your Markdown documents look like in HTML as you create them.
 * Sync Scrolling
   - While you type, LivePreview will automatically scroll to the current location you're editing.
