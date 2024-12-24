@@ -46,23 +46,17 @@ This app is here to solve that problem!
 It allows you to enjoy all your favorite webtoons in one place.  
 Additionally, it features a webtoon recommendation system powered by the Gemini API!   
 
-* 
-  - Instantly see what your Markdown documents look like in HTML as you create them.
-* Sync Scrolling
-  - While you type, LivePreview will automatically scroll to the current location you're editing.
-* GitHub Flavored Markdown  
-* Syntax highlighting
-* [KaTeX](https://khan.github.io/KaTeX/) Support
-* Dark/Light mode
-* Toolbar for basic Markdown formatting
-* Supports multiple cursors
-* Save the Markdown preview as PDF
-* Emoji support in preview :tada:
-* App will keep alive in tray for quick usage
-* Full screen mode
-  - Write distraction free.
-* Cross platform
-  - Windows, macOS and Linux ready.
+  
+* **요일별 웹툰 추가 기능** : 자신이 즐겨보는 웹툰을 요일별로 등록할 수 있습니다.
+* **자동 URL 생성 및 웹뷰 연결** : 제목과 플랫폼을 설정하면, 해당 웹툰의 URL이 자동으로 생성되어 앱 내 웹뷰로 바로 연결됩니다.
+* **간편한 웹뷰 내 탐색** : 웹뷰에서 ←, → 버튼을 눌러 이전 페이지와 다음 페이지로 쉽게 이동할 수 있습니다. 이 기능은 `SharedFlow`를 활용해 구현되었으며, `LaunchedEffect`로 버튼 동작을 감지하여 반응합니다.
+* **AI 기반 웹툰 추천 기능** : Gemini API를 활용하여 사용자 취향에 맞는 웹툰을 추천합니다.
+  
+  
+* **Add Webtoons by Day** : Register your favorite webtoons by the day of the week.
+* **Automatic URL Generation and Webview Integration** : Set the title and platform, and the app automatically generates the URL, seamlessly connecting you to the webtoon through the in-app webview.
+* **Easy Webview Navigation** : Navigate easily with ← and → buttons to move to the previous or next page in the webview. This feature is implemented using `SharedFlow` and responds to button actions detected through `LaunchedEffect`.
+* **AI-based Webtoon Recommendation** : Get personalized webtoon recommendations powered by the Gemini API.
 
 ## How To Use
 
