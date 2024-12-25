@@ -24,13 +24,6 @@
   <img src="https://img.shields.io/badge/Coroutine-D9D9D9?style=flat-square&logo=Coroutine&logoColor=white"/>
 </p>
 
-<p align="center">
-  <a href="#key-features">Key Features</a> •
-  <a href="#how-to-use">How To Use</a> •
-  <a href="#download">Download</a> •
-  <a href="#credits">Credits</a>
-</p>
-
 ![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
 
 ## Key Features
@@ -46,56 +39,20 @@ This app is here to solve that problem!
 It allows you to enjoy all your favorite webtoons in one place.  
 Additionally, it features a webtoon recommendation system powered by the Gemini API!   
 
+  #
   
 * **요일별 웹툰 추가 기능** : 자신이 즐겨보는 웹툰을 요일별로 등록할 수 있습니다.
 * **자동 URL 생성 및 웹뷰 연결** : 제목과 플랫폼을 설정하면, 해당 웹툰의 URL이 자동으로 생성되어 앱 내 웹뷰로 바로 연결됩니다.
 * **간편한 웹뷰 내 탐색** : 웹뷰에서 ←, → 버튼을 눌러 이전 페이지와 다음 페이지로 쉽게 이동할 수 있습니다. 이 기능은 `SharedFlow`를 활용해 구현되었으며, `LaunchedEffect`로 버튼 동작을 감지하여 반응합니다.
 * **AI 기반 웹툰 추천 기능** : Gemini API를 활용하여 사용자 취향에 맞는 웹툰을 추천합니다.
-  
-  
+  <br></br>
 * **Add Webtoons by Day** : Register your favorite webtoons by the day of the week.
 * **Automatic URL Generation and Webview Integration** : Set the title and platform, and the app automatically generates the URL, seamlessly connecting you to the webtoon through the in-app webview.
 * **Easy Webview Navigation** : Navigate easily with ← and → buttons to move to the previous or next page in the webview. This feature is implemented using `SharedFlow` and responds to button actions detected through `LaunchedEffect`.
 * **AI-based Webtoon Recommendation** : Get personalized webtoon recommendations powered by the Gemini API.
 
 ## How To Use
-
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
-
-```bash
-# Clone this repository
-$ git clone https://github.com/amitmerchant1990/electron-markdownify
-
-# Go into the repository
-$ cd electron-markdownify
-
-# Install dependencies
-$ npm install
-
-# Run the app
-$ npm start
-```
-
-> **Note**
-> If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
-
-
-## Download
-
-You can [download](https://github.com/amitmerchant1990/electron-markdownify/releases/tag/v1.2.0) the latest installable version of Markdownify for Windows, macOS and Linux.
-
-## Emailware
-
-Markdownify is an [emailware](https://en.wiktionary.org/wiki/emailware). Meaning, if you liked using this app or it has helped you in any way, I'd like you send me an email at <bullredeyes@gmail.com> about anything you'd want to say about this software. I'd really appreciate it!
-
-## Credits
-
-This software uses the following open source packages:
-
-- [Electron](http://electron.atom.io/)
-- [Node.js](https://nodejs.org/)
-- [Marked - a markdown parser](https://github.com/chjj/marked)
-- [showdown](http://showdownjs.github.io/showdown/)
-- [CodeMirror](http://codemirror.net/)
-- Emojis are taken from [here](https://github.com/arvida/emoji-cheat-sheet.com)
-- [highlight.js](https://highlightjs.org/)
+### Login with google
+### Add webtoons
+### enjoy by WebView!
+### get recommendation by Gemini!
