@@ -13,11 +13,11 @@ permissions:
   contents: read
   checks: read
   pull-requests: write
-  
 
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
+
     steps:
       # 1. PR 작성자가 Dependabot인지 확인
       - name: Check if Dependabot
@@ -28,7 +28,16 @@ jobs:
             exit 1
           fi
 
-      # 2. CI 상태 확인
+      # 2. 디버깅용 context 및 payload 출력
+      - name: Debug Context and Payload
+        uses: actions/github-script@v6
+        with:
+          script: |
+            console.log('Context:', context);
+            console.log('Payload:', context.payload);
+            console.log('Pull Request SHA:', context.payload.pull_request?.head?.sha);
+
+      # 3. CI 상태 확인
       - name: Ensure CI Checks Passed
         id: ci-status
         uses: actions/github-script@v6
@@ -40,6 +49,11 @@ jobs:
               ref: context.payload.pull_request.head.sha,
             });
 
+            if (!checkRuns || !checkRuns.check_runs || checkRuns.check_runs.length === 0) {
+              console.log('No check runs found. Data:', checkRuns);
+              throw new Error('No check runs found or API call failed.');
+            }
+
             const allChecksPassed = checkRuns.check_runs.every(
               (check) => check.conclusion === 'success'
             );
@@ -48,12 +62,12 @@ jobs:
               throw new Error('CI checks did not pass.');
             }
 
-      # 3. PR 자동 승인 (필요한 경우)
+      # 4. PR 자동 승인 (필요한 경우)
       - name: Approve Pull Request
         uses: hmarr/auto-approve-action@v3
         if: steps.dependabot-check.outcome == 'success'
 
-      # 4. PR 병합
+      # 5. PR 병합
       - name: Merge Pull Request
         uses: actions/github-script@v6
         if: steps.dependabot-check.outcome == 'success' && steps.ci-status.outcome == 'success'
@@ -63,5 +77,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: context.payload.pull_request.number,
-              merge_method: 'squash', // merge, squash, rebase 중 선택
+              merge_method: 'merge', // merge, squash, rebase 중 선택
             });
