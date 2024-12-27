@@ -9,6 +9,12 @@ on:
       - synchronize
       - reopened
 
+permissions:
+  contents: read
+  checks: read
+  pull-requests: write
+  
+
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
