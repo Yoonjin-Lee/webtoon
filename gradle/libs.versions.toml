@@ -17,7 +17,7 @@ androidxNavigationCompose = "2.8.5"
 playServices = "20.5.0"
 composeRuntime = "1.7.6"
 vertaxAi = "16.0.2"
-coroutines = "1.5.2"
+coroutines = "1.10.1"
 markdown = "4.6.2"
 
 
