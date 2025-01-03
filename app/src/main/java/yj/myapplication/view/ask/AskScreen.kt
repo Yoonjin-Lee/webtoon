@@ -82,7 +82,7 @@ fun AskScreen(
                 state = rememberLazyListState(),
                 reverseLayout = true
             ) {
-                items(chatList.value){message ->
+                items(chatList.value) { message ->
                     ChatBox(message = message)
                 }
             }
@@ -105,7 +105,10 @@ fun AskScreen(
                                 chatInput.value = ""
                             }
                         }) {
-                            Icon(imageVector = Icons.AutoMirrored.Filled.Send, contentDescription = "send")
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.Send,
+                                contentDescription = "send"
+                            )
                         }
                     }
                 )
@@ -115,7 +118,7 @@ fun AskScreen(
 }
 
 @Composable
-fun ChatBox(message: Message){
+fun ChatBox(message: Message) {
     val modifier = if (message.isMe) {
         Modifier
             .padding(start = 16.dp, end = 8.dp)
@@ -146,9 +149,11 @@ fun ChatBox(message: Message){
 
     val boxArrangement = if (message.isMe) Alignment.CenterEnd else Alignment.CenterStart
 
-    Box(modifier = Modifier
-        .padding(vertical = 12.dp)
-        .fillMaxWidth(), contentAlignment = boxArrangement) {
+    Box(
+        modifier = Modifier
+            .padding(vertical = 12.dp)
+            .fillMaxWidth(), contentAlignment = boxArrangement
+    ) {
         Row(
             verticalAlignment = Alignment.Bottom,
         ) {
